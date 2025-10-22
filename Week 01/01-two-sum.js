@@ -31,7 +31,20 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
+    let i = 0
+    let j = i + 1
     // Your solution here
+    while (i < nums.length) {
+        while (j < nums.length) {
+            if (nums[i] + nums[j] == target) {
+                return [i, j]
+            }
+            j++
+        }
+        i++
+        j = i + 1
+    }
+    return []; // No solution found 
 };
 
 // Test cases

@@ -30,11 +30,37 @@
  */
 var isValid = function(s) {
     // Your solution here
+    let stack = []
+
+    for (let i = 0; i < s.length; i++) {
+        if (
+            (s[i] === ')' && stack.length === 0) || 
+            (s[i] === '}' && stack.length === 0) || 
+            (s[i] === ']' && stack.length === 0)) {
+            return false;
+        } 
+
+        if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
+            stack.push(s[i]);
+        } 
+
+        if ((s[i] === ')' && stack[stack.length - 1] === '(') || 
+            (s[i] === '}' && stack[stack.length - 1] === '{') || 
+            (s[i] === ']' && stack[stack.length - 1] === '[')) {
+            stack.pop();
+        }
+    }
+
+    if (stack.length === 0) {
+        return true;
+    }
+    return false;
 };
 
 // Test cases
 console.log(isValid("()")); // Expected: true
 console.log(isValid("()[]{}")); // Expected: true
 console.log(isValid("(]")); // Expected: false
+console.log(isValid("}(]")); // Expected: false
 console.log(isValid("([)]")); // Expected: false
 console.log(isValid("{[]}")); // Expected: true

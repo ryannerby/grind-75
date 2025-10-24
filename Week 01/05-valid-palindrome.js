@@ -31,7 +31,22 @@
  */
 var isPalindrome = function(s) {
     // Your solution here
+    const phrase = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    let left = 0
+    let right = phrase.length - 1
+
+    while (left < right) {
+        if (phrase[left] === phrase[right]) {
+            left++;
+            right--;
+        } else {
+            return false;
+        }
+    }
+    return true;
 };
+
 
 // Test cases
 console.log(isPalindrome("A man, a plan, a canal: Panama")); // Expected: true
